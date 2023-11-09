@@ -1,0 +1,224 @@
+@font-face {
+  font-family: "RobotoRegular";
+  src: url(../font/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: "RobotoBlack";
+  src: url(../font/Roboto/Roboto-Black.ttf);
+}
+
+:root {
+  --mainColor: #8bcf4b;
+  --lightGrey: #f0f0f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "RobotoRegular";
+  font-size: 18px;
+  color: #454545;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 25px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+/***************************************
+ General 
+ ****************************************/
+
+.outerContainer {
+  height: 100vh;
+}
+
+.row {
+  padding: 50px 0px;
+  width: 100%;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/***************************************
+ Form 
+ ****************************************/
+
+.fixedCostsRow {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.earning {
+  height: 40px;
+  width: 100%;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.costRow {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.costRowThird {
+  padding: 20px;
+}
+
+.costRowThird:first-child {
+  flex: 3;
+}
+
+.costRowThird:nth-child(2) {
+  flex: 2;
+}
+
+.costRowThird:nth-child(3) {
+  flex: 1;
+}
+
+.fifty {
+  background-color: #959595;
+}
+
+.thirty {
+  background-color: #c0c0c0;
+}
+
+.twenty {
+  background-color: #d5d5d5;
+}
+
+.infoNote {
+  font-style: italic;
+  font-size: 0.8em;
+  margin-top: 10px;
+}
+
+.budgetingContainer {
+  background-color: var(--lightGrey);
+  padding: 20px;
+}
+
+input[type="checkbox"] {
+  width: 40px;
+  height: 40px;
+  margin: 0px;
+}
+
+.fixedCosts {
+  margin-top: 20px;
+}
+
+.budgetingRow {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.budgetingRow .budgetingContainer {
+  flex: 0 0 50%
+}
+
+/***************************************
+ Buttons 
+ ****************************************/
+
+.mainButton {
+  background-color: #78d122;
+  font-size: 1em;
+  border: 0px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.buttonHandler {
+  display: flex;
+  justify-content: right;
+  margin-top: 20px;
+}
+
+
+/***************************************
+ Dev Stuff 
+ ****************************************/
+.halfRowWrapper {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.halfRow {
+  background-color: var(--lightGrey);
+  padding: 20px;
+}
+
+.halfRow:first-child {
+  flex: 0 0 60%;
+}
+
+.halfRow:nth-child(2) {
+  flex: 0 0 35%;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputOuterContainer input[type="text"],
+.inputOuterContainer input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.inputOuterContainer {
+  padding: 5px;
+}
+
+.inputOuterContainer:first-child {
+  flex: 1;
+}
+
+.inputOuterContainer:nth-child(2) {
+  flex: 2;
+}
+
+.inputOuterContainer:nth-child(3) {
+  flex: 4;
+}
+
+input[type="text"] {
+  width: 100%;
+}
