@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/catlee1212/finance.manager/static/css/main.329a3ced.css",
-    "main.js": "/catlee1212/finance.manager/static/js/main.b8aa6e2d.js",
-    "static/media/Roboto-Regular.ttf": "/catlee1212/finance.manager/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
-    "static/media/Roboto-Black.ttf": "/catlee1212/finance.manager/static/media/Roboto-Black.cf56c1b149d0a5e8d7c6.ttf",
-    "index.html": "/catlee1212/finance.manager/index.html",
-    "main.329a3ced.css.map": "/catlee1212/finance.manager/static/css/main.329a3ced.css.map",
-    "main.b8aa6e2d.js.map": "/catlee1212/finance.manager/static/js/main.b8aa6e2d.js.map"
+    "main.css": "/finance.manager/static/css/main.97706841.css",
+    "main.js": "/finance.manager/static/js/main.b8aa6e2d.js",
+    "static/media/Roboto-Regular.ttf": "/finance.manager/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/Roboto-Black.ttf": "/finance.manager/static/media/Roboto-Black.cf56c1b149d0a5e8d7c6.ttf",
+    "index.html": "/finance.manager/index.html",
+    "main.97706841.css.map": "/finance.manager/static/css/main.97706841.css.map",
+    "main.b8aa6e2d.js.map": "/finance.manager/static/js/main.b8aa6e2d.js.map"
   },
   "entrypoints": [
-    "static/css/main.329a3ced.css",
+    "static/css/main.97706841.css",
     "static/js/main.b8aa6e2d.js"
   ]
 }
