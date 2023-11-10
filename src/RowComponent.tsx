@@ -20,7 +20,9 @@ export default class RowComponent extends React.Component<RowProps>{
     return <>
       <div key={this.props.idx} className="inputWrapper">
         <div className="inputOuterContainer">
-          <input className="checkbox" type="checkbox" onChange={this.onCheckBoxClicked.bind(this)} />
+          <div className="checkboxWrapper">
+            <input type="checkbox" className="customCheckbox" onChange={this.onCheckBoxClicked.bind(this)} />
+          </div>
         </div>
         <div className="inputOuterContainer">
           <input className="expenses" type="number" placeholder="Amout" onBlur={this.onChangeOfValue.bind(this)} />
