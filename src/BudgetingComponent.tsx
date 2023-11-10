@@ -57,9 +57,9 @@ export default class BudgetingComponent extends React.Component<Record<string, n
             </div>
             <div className="halfRow">
               <PieChart data={[
-                { usage: 'Fifty percent', amount: this.state.budget.fiftyPercent, color: '#959595' },
-                { usage: 'Thirty percent', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
-                { usage: 'Twenty percent', amount: this.state.budget.twentyPercent, color: '#d5d5d5' }
+                { usage: 'Fifty percent - fixed costs', amount: this.state.budget.fiftyPercent, color: '#959595' },
+                { usage: 'Thirty percent - wishes and fun', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
+                { usage: 'Twenty percent - savings', amount: this.state.budget.twentyPercent, color: '#d5d5d5' }
               ]}
                 width={300}
                 height={300}
