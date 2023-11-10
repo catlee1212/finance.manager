@@ -31,7 +31,7 @@ export default class BudgetingComponent extends React.Component<Record<string, n
   constructor(props = {}) {
     super(props);
     this.state = {
-      budget: { budgetValue: 2200, fiftyPercent: 0, thirtyPercent: 0, twentyPercent: 0 },
+      budget: { budgetValue: 0, fiftyPercent: 0, thirtyPercent: 0, twentyPercent: 0 },
       fixedCostRow: [<RowComponent key={0} idx={0} setValueInParent={this.arrayOfChangedValues.bind(this)} />],
       rowValues: [{ idx: 0, expense: 0, checkBoxFlag: false }],
       flagCheckbox: false
@@ -63,18 +63,20 @@ export default class BudgetingComponent extends React.Component<Record<string, n
           <h1>Budgeting your fixed expenses</h1>
           <p>So what exactly are your monthly expeses? What is left and how you can handle this.</p>
         </div>
-        <div className="halfRowWrapper container">
-          <div className="halfRow">
-            <p>To substract your fixed costs, please check checkbox. Otherwise amout will be ignored.</p>
-            {this.state.fixedCostRow}
-            <div className="buttonHandler">
-              <button className="mainButton" onClick={this.onAddButtonClicked.bind(this)}>add row</button>
+        <div className="row">
+          <div className="halfRowWrapper container">
+            <div className="halfRow">
+              <p>To substract your fixed costs, please check checkbox. Otherwise amout will be ignored.</p>
+              {this.state.fixedCostRow}
+              <div className="buttonHandler">
+                <button className="mainButton" onClick={this.onAddButtonClicked.bind(this)}>add row</button>
+              </div>
             </div>
-          </div>
-          <div className="halfRow">
-            <p>Earnings: {this.state.budget.budgetValue} €</p>
-            <p>Fixed costs: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).sumExpenses} €</p>
-            <p>Remaining budget: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).budgetLeft} €</p>
+            <div className="halfRow">
+              <p>Earnings: {this.state.budget.budgetValue} €</p>
+              <p>Fixed costs: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).sumExpenses} €</p>
+              <p>Remaining budget: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).budgetLeft} €</p>
+            </div>
           </div>
         </div>
       </div>
