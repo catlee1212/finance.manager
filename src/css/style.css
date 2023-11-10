@@ -135,10 +135,6 @@ input:focus-visible {
   padding: 20px;
 }
 
-.fixedCosts {
-  margin-top: 20px;
-}
-
 .budgetingRow {
   display: flex;
   justify-content: center;
