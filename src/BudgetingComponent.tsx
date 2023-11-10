@@ -48,10 +48,10 @@ export default class BudgetingComponent extends React.Component<Record<string, n
           <div className="halfRowWrapper container">
             <div className="halfRow">
               <h1>Budgeting with the 50-30-20 rule</h1>
-              <p>Calculate your expenses and saving by using <strong>50-30-20</strong> rule.
-                <strong> 50 %</strong> of your budget should go into your <strong>fixed costs</strong> e.g. rent, electricity, gas, monthly bills, insurance etc.
-                <strong> 30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.
-                And <strong>20 %</strong> should go into your <strong>savings</strong>.</p>
+              <p>Calculate your expenses and savings by using <strong>50-30-20</strong> rule.</p>
+              <p><strong> 50 %</strong> of your budget should go into your <strong>fixed costs</strong> e.g. rent, electricity, gas, monthly bills, insurance etc.</p>
+              <p><strong> 30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.</p>
+              <p><strong>20 %</strong> should go into your <strong>savings</strong>.</p>
               <input className="earning" type="number" placeholder="Your monthly earnings" onChange={this.onBudgetChanged.bind(this)}></input>
               <div className="infoNote">Average is calculated with 2200 €</div>
             </div>
