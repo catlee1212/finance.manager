@@ -1,7 +1,3 @@
-# Finance manager
-
-This project was created with React.
-
 ## Available Scripts
 
 In the project directory, you can run:
