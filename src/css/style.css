@@ -286,3 +286,47 @@ input[type="text"] {
 .checkboxWrapper .customCheckbox:checked:hover {
   background-color: var(--secondColor);
 }
+
+/***************************************
+ MediaQuery
+ ****************************************/
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .inputWrapper {
+    background-color: #b6b6b6;
+    margin-bottom: 20px;
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+
+  .inputOuterContainer:nth-child(2),
+  .inputOuterContainer:nth-child(3) {
+    flex: auto;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .halfRowWrapper {
+    flex-wrap: wrap;
+  }
+
+  .halfRow:first-child,
+  .halfRow:nth-child(2) {
+    flex: 0 0 100%;
+  }
+
+  .halfRow:nth-child(2) {
+    margin-top: 20px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
