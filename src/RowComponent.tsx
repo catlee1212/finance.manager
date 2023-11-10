@@ -18,12 +18,6 @@ export default class RowComponent extends React.Component<RowProps>{
 
   render(): ReactNode {
     return <>
-      {/* <div key={this.props.idx} className="fixedCostsRow">
-        <input className="checkbox" type="checkbox" onChange={this.onCheckBoxClicked.bind(this)} />
-        <input className="expenses" type="number" placeholder="Amout" onBlur={this.onChangeOfValue.bind(this)} />
-        <input className="purpose" type="text" placeholder="Purpose of use" onBlur={this.onChangeOfValue.bind(this)} />
-      </div> */}
-
       <div key={this.props.idx} className="inputWrapper">
         <div className="inputOuterContainer">
           <input className="checkbox" type="checkbox" onChange={this.onCheckBoxClicked.bind(this)} />

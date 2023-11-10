@@ -12,7 +12,7 @@ export interface BudgetingState {
   budget: Budget;
   fixedCostRow: any[];
   rowValues: { idx: number, expense: number, checkBoxFlag: boolean }[];
-  flagCheckbox: boolean
+  flagCheckbox: boolean;
 }
 
 export interface BudgetLeft {
@@ -43,7 +43,6 @@ export default class BudgetingComponent extends React.Component<Record<string, n
     return <>
       <div className="outerContainer">
         <div className="row">
-          {/* Budgeting 50-30-20 */}
           <div className="container budgetingContainer">
             <h1>Budgeting with the 50-30-20 rule</h1>
             <p>Calculate your expenses and saving by using <br /><strong>50-30-20</strong> rule.
@@ -93,7 +92,7 @@ export default class BudgetingComponent extends React.Component<Record<string, n
 
   arrayOfChangedValues(idx: number, expense: number, checkBoxFlag: boolean): void {
     let newArray = { idx, expense, checkBoxFlag };
-    let oldArray = this.state.rowValues
+    let oldArray = this.state.rowValues;
     let expensesArray = replaceOrAdd(oldArray, newArray);
     this.setState({ rowValues: expensesArray });
   }
@@ -102,7 +101,7 @@ export default class BudgetingComponent extends React.Component<Record<string, n
 
 function calculateBudgetByRule(event: ChangeEvent<HTMLInputElement>): Budget {
   const budgetValue = parseInt(event.target.value);
-  const fiftyPercent = parseInt((budgetValue * 0.5).toFixed(2))
+  const fiftyPercent = parseInt((budgetValue * 0.5).toFixed(2));
   const thirtyPercent = parseInt((budgetValue * 0.3).toFixed(2));
   const twentyPercent = parseInt((budgetValue * 0.2).toFixed(2));
 
@@ -124,11 +123,11 @@ function calculateBudgetByRule(event: ChangeEvent<HTMLInputElement>): Budget {
 
 function calculateBudget(fixedCost: { idx: number, expense: number, checkBoxFlag: boolean }[], budget: number): BudgetLeft {
   let sumExpenses = 0;
-  let arrayToSumUp: { idx: number, expense: number, checkBoxFlag: boolean }[] = []
+  let arrayToSumUp: { idx: number, expense: number, checkBoxFlag: boolean }[] = [];
 
   fixedCost.map(function (costs) {
     if (costs.checkBoxFlag === true) arrayToSumUp.push(costs)
-  });
+  })
 
   for (let i = 0; i < arrayToSumUp.length; i++) {
     sumExpenses += arrayToSumUp[i].expense;
