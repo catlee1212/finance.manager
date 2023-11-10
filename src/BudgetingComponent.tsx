@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactNode } from 'react';
 import RowComponent from './RowComponent';
+import { PieChart } from './PieChart';
 
 export interface Budget {
   budgetValue: number;
@@ -29,9 +30,10 @@ export interface Expenses {
 export default class BudgetingComponent extends React.Component<Record<string, never>, BudgetingState> {
 
   constructor(props = {}) {
+
     super(props);
     this.state = {
-      budget: { budgetValue: 0, fiftyPercent: 0, thirtyPercent: 0, twentyPercent: 0 },
+      budget: { budgetValue: 2200, fiftyPercent: 1100, thirtyPercent: 660, twentyPercent: 440 },
       fixedCostRow: [<RowComponent key={0} idx={0} setValueInParent={this.arrayOfChangedValues.bind(this)} />],
       rowValues: [{ idx: 0, expense: 0, checkBoxFlag: false }],
       flagCheckbox: false
@@ -43,39 +45,54 @@ export default class BudgetingComponent extends React.Component<Record<string, n
     return <>
       <div className="outerContainer">
         <div className="row">
-          <div className="container budgetingContainer">
-            <h1>Budgeting with the 50-30-20 rule</h1>
-            <p>Calculate your expenses and saving by using <strong>50-30-20</strong> rule.
-              <strong> 50 %</strong> of your budget should go into your <strong>fixed costs</strong> e.g. rent, electricity, gas, monthly bills, insurance etc.
-              <strong> 30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.
-              And <strong>20 %</strong> should go into your <strong>savings</strong>.</p>
-            <input className="earning" type="number" placeholder="Your monthly earnings" onChange={this.onBudgetChanged.bind(this)}></input>
-            <br />
-            <div className="costRow">
-              <div className="costRowThird fifty"><div>{this.state.budget.fiftyPercent}&nbsp;€</div></div>
-              <div className="costRowThird thirty"><div>{this.state.budget.thirtyPercent}&nbsp;€</div></div>
-              <div className="costRowThird twenty"><div>{this.state.budget.twentyPercent}&nbsp;€</div></div>
+          <div className="halfRowWrapper container">
+            <div className="halfRow">
+              <h1>Budgeting with the 50-30-20 rule</h1>
+              <p>Calculate your expenses and saving by using <strong>50-30-20</strong> rule.
+                <strong> 50 %</strong> of your budget should go into your <strong>fixed costs</strong> e.g. rent, electricity, gas, monthly bills, insurance etc.
+                <strong> 30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.
+                And <strong>20 %</strong> should go into your <strong>savings</strong>.</p>
+              <input className="earning" type="number" placeholder="Your monthly earnings" onChange={this.onBudgetChanged.bind(this)}></input>
+              <div className="infoNote">Average is calculated with 2200 €</div>
             </div>
-            <div className="infoNote">Average is calculated with 0 €</div>
+            <div className="halfRow">
+              <PieChart data={[
+                { usage: 'Fifty percent', amount: this.state.budget.fiftyPercent, color: '#959595' },
+                { usage: 'Thirty percent', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
+                { usage: 'Twenty percent', amount: this.state.budget.twentyPercent, color: '#d5d5d5' }
+              ]}
+                width={300}
+                height={300}
+              />
+            </div>
           </div>
         </div>
         <div className="container">
-          <h1>Budgeting your fixed expenses</h1>
-          <p>So what exactly are your monthly expeses? What is left and how you can handle this.</p>
+
         </div>
         <div className="row">
           <div className="halfRowWrapper container">
             <div className="halfRow">
+              <h1>Budgeting your fixed expenses</h1>
+              <p>So what exactly are your monthly expeses? What is left and how you can handle this.</p> <p>Earnings: {this.state.budget.budgetValue} €</p>
+
+              <p>Fixed costs: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).sumExpenses} €</p>
+              <p>Remaining budget: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).budgetLeft} €</p>
+            </div>
+            <div className="halfRow">
+              <PieChart data={[
+                { usage: 'Montly earnings', amount: this.state.budget.budgetValue, color: 'rgba(101,101,101,0.4)' },
+                { usage: 'Fixed costs', amount: calculateBudget(this.state.rowValues, this.state.budget.budgetValue).sumExpenses, color: 'rgba(219,98,111,0.6)' },
+                { usage: 'Remaining budget', amount: calculateBudget(this.state.rowValues, this.state.budget.budgetValue).budgetLeft, color: 'rgba(97,180,86,0.4)' }
+              ]}
+                width={300}
+                height={300}
+              />
               <p>To substract your fixed costs, please check checkbox. Otherwise amout will be ignored.</p>
               {this.state.fixedCostRow}
               <div className="buttonHandler">
                 <button className="mainButton" onClick={this.onAddButtonClicked.bind(this)}>add row</button>
               </div>
-            </div>
-            <div className="halfRow">
-              <p>Earnings: {this.state.budget.budgetValue} €</p>
-              <p>Fixed costs: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).sumExpenses} €</p>
-              <p>Remaining budget: {calculateBudget(this.state.rowValues, this.state.budget.budgetValue).budgetLeft} €</p>
             </div>
           </div>
         </div>
@@ -115,6 +132,7 @@ function calculateBudgetByRule(event: ChangeEvent<HTMLInputElement>): Budget {
       twentyPercent: 20
     };
   }
+
   return {
     budgetValue: budgetValue,
     fiftyPercent: fiftyPercent,
@@ -126,8 +144,9 @@ function calculateBudgetByRule(event: ChangeEvent<HTMLInputElement>): Budget {
 function calculateBudget(fixedCost: { idx: number, expense: number, checkBoxFlag: boolean }[], budget: number): BudgetLeft {
   let sumExpenses = 0;
   let arrayToSumUp: { idx: number, expense: number, checkBoxFlag: boolean }[] = [];
+  let budgetLeft = 0;
 
-  fixedCost.map(function (costs) {
+  fixedCost.forEach((costs) => {
     if (costs.checkBoxFlag === true) arrayToSumUp.push(costs)
   })
 
@@ -135,8 +154,7 @@ function calculateBudget(fixedCost: { idx: number, expense: number, checkBoxFlag
     sumExpenses += arrayToSumUp[i].expense;
   }
 
-  let budgetLeft = budget - sumExpenses;
-
+  budgetLeft = budget - sumExpenses;
   return {
     sumExpenses: sumExpenses,
     budgetLeft: budgetLeft
