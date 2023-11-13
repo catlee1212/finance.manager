@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ReactNode } from "react";
 
-export interface RowProps {
+interface RowProps {
   idx: number;
   flag?: boolean;
   setValueInParent(value: number, idx: number, checkBoxFlag: boolean): void;

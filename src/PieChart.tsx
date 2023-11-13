@@ -5,13 +5,13 @@ import { Pie } from "@visx/shape";
 import Ordinal from '@visx/legend/lib/legends/Ordinal';
 import { ScaleSVG } from '@visx/responsive';
 
-export interface DataInterface {
+interface DataInterface {
   usage: string;
   amount: number;
   color: string;
 }
 
-export interface PieChartProps {
+interface PieChartProps {
   width: number;
   height: number;
   events?: boolean;
