@@ -6,9 +6,9 @@ interface MainState {
   earningsPerMonth: number
 }
 
-export default class RowComponent extends React.Component<{}, MainState> {
+export default class MainComponent extends React.Component<Record<string, never>, MainState> {
 
-  constructor(props: {}) {
+  constructor(props = {}) {
     super(props);
     this.state = {
       earningsPerMonth: 2200
