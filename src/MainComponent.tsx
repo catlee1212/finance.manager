@@ -1,9 +1,12 @@
 import React, { ReactNode } from "react";
 import BudgetingFixedExpensesComponent from "./BudgetingFixedExpensesComponent";
 import BudgetingRuleComponent from "./BudgetingRuleComponent";
+import MenuComponent from "./MenuComponent";
+import { fixedCostSymbol, ruleSymbol } from "./ScreenSymbols";
 
 interface MainState {
   earningsPerMonth: number
+  selectedScreen: string
 }
 
 export default class MainComponent extends React.Component<Record<string, never>, MainState> {
@@ -11,23 +14,37 @@ export default class MainComponent extends React.Component<Record<string, never>
   constructor(props = {}) {
     super(props);
     this.state = {
-      earningsPerMonth: 2200
+      earningsPerMonth: 2200,
+      selectedScreen: ruleSymbol
     }
   }
 
   render(): ReactNode {
+
+    let componentToShow = <></>;
+    switch (this.state.selectedScreen) {
+      case ruleSymbol:
+        componentToShow = <BudgetingRuleComponent setValueInParent={this.setEarningsValueInParent.bind(this)} />;
+        break;
+      case fixedCostSymbol:
+        componentToShow = <BudgetingFixedExpensesComponent earningsPerMonth={this.state.earningsPerMonth} />;
+        break;
+      default: throw new Error('Unknown Screen');
+    }
+
     return <>
+      <MenuComponent setValueInParent={this.setScreenIdInParent.bind(this)} />
       <div className="outerContainer">
-        <BudgetingRuleComponent setValueInParent={this.setValueInParent.bind(this)} />
-        <BudgetingFixedExpensesComponent earningsPerMonth={this.state.earningsPerMonth} />
+        {componentToShow}
       </div>
     </>;
   }
 
-  setValueInParent(earningsPerMonth: number): void {
+  setEarningsValueInParent(earningsPerMonth: number): void {
     this.setState({ earningsPerMonth: earningsPerMonth });
   }
 
+  setScreenIdInParent(screenId: string): void {
+    this.setState({ selectedScreen: screenId });
+  }
 }
-
-

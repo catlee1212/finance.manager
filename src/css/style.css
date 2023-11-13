@@ -257,6 +257,36 @@ input[type="text"] {
 }
 
 /***************************************
+ Navigation
+ ****************************************/
+
+.topNavigation {
+  background-color: #353535;
+  color: #fff;
+}
+
+nav {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+nav ul li {
+  list-style-type: none;
+  padding: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+/***************************************
  MediaQuery
  ****************************************/
 
