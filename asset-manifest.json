@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/finance.manager/static/css/main.75cc0e23.css",
-    "main.js": "/finance.manager/static/js/main.6c9ba8fb.js",
+    "main.css": "/finance.manager/static/css/main.0b57e67e.css",
+    "main.js": "/finance.manager/static/js/main.8fade57d.js",
     "static/media/Roboto-Regular.ttf": "/finance.manager/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Roboto-Black.ttf": "/finance.manager/static/media/Roboto-Black.cf56c1b149d0a5e8d7c6.ttf",
     "index.html": "/finance.manager/index.html",
-    "main.75cc0e23.css.map": "/finance.manager/static/css/main.75cc0e23.css.map",
-    "main.6c9ba8fb.js.map": "/finance.manager/static/js/main.6c9ba8fb.js.map"
+    "main.0b57e67e.css.map": "/finance.manager/static/css/main.0b57e67e.css.map",
+    "main.8fade57d.js.map": "/finance.manager/static/js/main.8fade57d.js.map"
   },
   "entrypoints": [
-    "static/css/main.75cc0e23.css",
-    "static/js/main.6c9ba8fb.js"
+    "static/css/main.0b57e67e.css",
+    "static/js/main.8fade57d.js"
   ]
 }
