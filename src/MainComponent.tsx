@@ -3,6 +3,7 @@ import BudgetingFixedExpensesComponent from "./BudgetingFixedExpensesComponent";
 import BudgetingRuleComponent from "./BudgetingRuleComponent";
 import MenuComponent from "./MenuComponent";
 import { fixedCostSymbol, ruleSymbol } from "./ScreenSymbols";
+import { defaultBudgetValue } from "./DefaultValues";
 
 interface MainState {
   earningsPerMonth: number
@@ -14,7 +15,7 @@ export default class MainComponent extends React.Component<Record<string, never>
   constructor(props = {}) {
     super(props);
     this.state = {
-      earningsPerMonth: 2200,
+      earningsPerMonth: defaultBudgetValue,
       selectedScreen: ruleSymbol
     }
   }

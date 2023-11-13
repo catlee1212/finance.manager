@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactNode } from 'react';
 import { PieChart } from './PieChart';
+import { defaultBudgetValue, defaultFiftyPercent, defaultThirtyPercent, defaultTwentyPercent } from './DefaultValues';
 
 interface Budget {
   budgetValue: number;
@@ -21,7 +22,7 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
   constructor(props: BudgetingRuleProps) {
     super(props);
     this.state = {
-      budget: { budgetValue: 2200, fiftyPercent: 1100, thirtyPercent: 660, twentyPercent: 440 },
+      budget: { budgetValue: defaultBudgetValue, fiftyPercent: defaultFiftyPercent, thirtyPercent: defaultThirtyPercent, twentyPercent: defaultTwentyPercent },
     }
   }
 
@@ -36,7 +37,7 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
             <p><strong> 30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.</p>
             <p><strong>20 %</strong> should go into your <strong>savings</strong>.</p>
             <input className="earning" type="number" placeholder="Your monthly earnings" onChange={this.onBudgetChanged.bind(this)}></input>
-            <div className="infoNote">Average is calculated with 2200 €</div>
+            <div className="infoNote">Average is calculated with {defaultBudgetValue} €</div>
           </div>
           <div className="halfRow">
             <PieChart data={[
