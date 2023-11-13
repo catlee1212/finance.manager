@@ -58,5 +58,4 @@ function setValueOfInput(event: ChangeEvent<HTMLInputElement>): number {
 
 function setValuesInParent(props: RowProps, expense: number, flag: boolean): void {
   if (props.setValueInParent !== undefined) props.setValueInParent(props.idx, expense, flag);
-
 }
