@@ -13,6 +13,7 @@
   --secondColor: #5e9b25;
   --lightGrey: #f0f0f0;
   --checkBoxColor: #dfe1e4;
+  --transitions: all 100ms ease-out;
 }
 
 * {
@@ -57,11 +58,17 @@ h2 {
 
 .outerContainer {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .row {
-  padding: 50px 0px;
+  display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -216,7 +223,7 @@ input[type="text"] {
 
 .checkboxWrapper .customCheckbox,
 .checkboxWrapper .customCheckbox::after {
-  transition: all 100ms ease-out;
+  transition: var(--transitions);
 }
 
 .checkboxWrapper .customCheckbox::after {
@@ -260,30 +267,65 @@ input[type="text"] {
  Navigation
  ****************************************/
 
-.topNavigation {
-  background-color: #353535;
-  color: #fff;
-}
-
-nav {
+.navigation {
+  display: flex;
   width: 100%;
   justify-content: center;
-  display: flex;
   align-items: center;
+  z-index: 3;
+  position: fixed;
 }
 
-nav ul {
-  display: flex;
-  justify-content: space-between;
-  padding: 0px;
-}
-
-nav ul li {
-  list-style-type: none;
-  padding: 10px;
+/* left */
+#prevImage {
   cursor: pointer;
-  text-transform: uppercase;
-  font-weight: normal;
+  position: fixed;
+  left: 50px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40px;
+  align-items: center;
+  height: 100%;
+  transform: rotate(180deg);
+}
+
+#prevImage .arrowIcon:first-child {
+  transform: rotate(-45deg) translate(0px, 15px);
+}
+
+#prevImage .arrowIcon:nth-child(2) {
+  transform: rotate(45deg) translate(0px, -15px);
+}
+
+/* right */
+
+#nextImage {
+  cursor: pointer;
+  position: fixed;
+  right: 50px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40px;
+  align-items: center;
+  height: 100%;
+}
+
+.arrowIcon {
+  width: 25px;
+  height: 8px;
+  background-color: var(--mainColor);
+}
+
+#nextImage .arrowIcon:first-child {
+  transform: rotate(-45deg) translate(0px, 15px);
+}
+
+#nextImage .arrowIcon:nth-child(2) {
+  transform: rotate(45deg) translate(0px, -15px);
 }
 
 /***************************************

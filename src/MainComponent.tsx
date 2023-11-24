@@ -34,8 +34,8 @@ export default class MainComponent extends React.Component<Record<string, never>
     }
 
     return <>
-      <MenuComponent setValueInParent={this.setScreenIdInParent.bind(this)} />
       <div className="outerContainer">
+        <MenuComponent setValueInParent={this.setScreenIdInParent.bind(this)} />
         {componentToShow}
       </div>
     </>;
