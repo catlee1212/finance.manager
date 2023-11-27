@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode } from 'react';
+import React, { ChangeEvent, FormEvent, ReactNode } from 'react';
 import { PieChart } from './PieChart';
 import { defaultBudgetValue, defaultFiftyPercent, defaultThirtyPercent, defaultTwentyPercent } from './DefaultValues';
 
@@ -11,6 +11,7 @@ interface Budget {
 
 interface BudgetingState {
   budget: Budget;
+  showWarningMessage: boolean;
 }
 
 interface BudgetingRuleProps {
@@ -22,11 +23,22 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
   constructor(props: BudgetingRuleProps) {
     super(props);
     this.state = {
-      budget: { budgetValue: defaultBudgetValue, fiftyPercent: defaultFiftyPercent, thirtyPercent: defaultThirtyPercent, twentyPercent: defaultTwentyPercent },
+      budget: {
+        budgetValue: defaultBudgetValue,
+        fiftyPercent: defaultFiftyPercent,
+        thirtyPercent: defaultThirtyPercent,
+        twentyPercent: defaultTwentyPercent
+      },
+      showWarningMessage: false
     }
   }
 
   render(): ReactNode {
+    let errorMessage = <></>;
+    if (this.state.showWarningMessage) {
+      errorMessage = WarningMessage();
+    }
+
     return <>
       <div className="row">
         <div className="halfRowWrapper container">
@@ -36,10 +48,11 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
             <p><strong> 50 %</strong> of your budget should go into your <strong>fixed costs</strong> e.g. rent, electricity, gas, monthly bills, insurance etc.</p>
             <p><strong> 30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.</p>
             <p><strong>20 %</strong> should go into your <strong>savings</strong>.</p>
-            <input className="earning" type="number" placeholder="Your monthly earnings" onChange={this.onBudgetChanged.bind(this)}></input>
+            <input className="earning" type="number" placeholder="Your monthly earnings" onInput={this.preventMinusInput.bind(this)} onChange={this.onBudgetChanged.bind(this)} min={0}></input>
             <div className="infoNote">Average is calculated with {defaultBudgetValue} €</div>
           </div>
           <div className="halfRow">
+            <div>{errorMessage}</div>
             <PieChart data={[
               { usage: 'Fifty percent - fixed costs', amount: this.state.budget.fiftyPercent, color: '#959595' },
               { usage: 'Thirty percent - wishes and fun', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
@@ -52,6 +65,14 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
         </div>
       </div>
     </>;
+  }
+
+  preventMinusInput(event: FormEvent<HTMLInputElement>): void {
+    if (event.currentTarget.value.includes('-')) {
+      this.setState({ showWarningMessage: true });
+    } else if (!event.currentTarget.value.includes('-')) {
+      this.setState({ showWarningMessage: false });
+    }
   }
 
   onBudgetChanged(event: ChangeEvent<HTMLInputElement>): void {
@@ -90,4 +111,8 @@ function setEarningsPerMonthValueInParent(props: BudgetingRuleProps, earningsPer
     earningsPerMonth = 0;
   }
   if (props.setValueInParent !== undefined) props.setValueInParent(earningsPerMonth);
+}
+
+function WarningMessage(): JSX.Element {
+  return <div className="errorMessage">Sorry, you can not calculate with negative numbers. Please enter a positive value.</div>;
 }

@@ -329,6 +329,18 @@ input[type="text"] {
 }
 
 /***************************************
+ Messages
+ ****************************************/
+
+.errorMessage {
+  background-color: #a70000;
+  padding: 10px 20px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #fff;
+}
+
+/***************************************
  MediaQuery
  ****************************************/
 
