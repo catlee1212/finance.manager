@@ -57,7 +57,7 @@ h2 {
  ****************************************/
 
 .outerContainer {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -274,6 +274,8 @@ input[type="text"] {
   align-items: center;
   z-index: 3;
   position: fixed;
+  height: 100%;
+  top: 0px;
 }
 
 /* left */
@@ -376,6 +378,14 @@ input[type="text"] {
   .halfRow:nth-child(2) {
     margin-top: 20px;
   }
+
+  #prevImage {
+    left: 10px;
+  }
+
+  #nextImage {
+    right: 10px
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -385,5 +395,6 @@ input[type="text"] {
 @media only screen and (max-width: 1200px) {
   .container {
     width: 80%;
+    margin: 20px 0px;
   }
 }
