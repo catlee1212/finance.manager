@@ -267,17 +267,6 @@ input[type="text"] {
  Navigation
  ****************************************/
 
-.navigation {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-  position: fixed;
-  height: 100%;
-  top: 0px;
-}
-
 /* left */
 #prevImage {
   cursor: pointer;
@@ -291,6 +280,7 @@ input[type="text"] {
   align-items: center;
   height: 100%;
   transform: rotate(180deg);
+  top: 0;
 }
 
 #prevImage .arrowIcon:first-child {
@@ -314,6 +304,7 @@ input[type="text"] {
   width: 40px;
   align-items: center;
   height: 100%;
+  top: 0;
 }
 
 .arrowIcon {
