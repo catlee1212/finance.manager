@@ -6,8 +6,8 @@ import { fixedCostSymbol, ruleSymbol } from "./ScreenSymbols";
 import { defaultBudgetValue } from "./DefaultValues";
 
 interface MainState {
-  earningsPerMonth: number
-  selectedScreen: string
+  earningsPerMonth: number;
+  selectedScreen: string;
 }
 
 export default class MainComponent extends React.Component<Record<string, never>, MainState> {
@@ -25,7 +25,7 @@ export default class MainComponent extends React.Component<Record<string, never>
     let componentToShow = <></>;
     switch (this.state.selectedScreen) {
       case ruleSymbol:
-        componentToShow = <BudgetingRuleComponent setValueInParent={this.setEarningsValueInParent.bind(this)} />;
+        componentToShow = <BudgetingRuleComponent setValueInParent={this.setEarningsValueInParent.bind(this)} earningsPerMonth={this.state.earningsPerMonth} />;
         break;
       case fixedCostSymbol:
         componentToShow = <BudgetingFixedExpensesComponent earningsPerMonth={this.state.earningsPerMonth} />;

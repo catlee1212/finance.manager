@@ -12,11 +12,14 @@ interface Budget {
 interface BudgetingState {
   budget: Budget;
   showWarningMessage: boolean;
+  blur: string;
 }
 
 interface BudgetingRuleProps {
+  earningsPerMonth: number;
   setValueInParent(earningsPerMonth: number): void;
 }
+
 
 export default class BudgetingRuleComponent extends React.Component<BudgetingRuleProps, BudgetingState> {
 
@@ -29,8 +32,17 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
         thirtyPercent: defaultThirtyPercent,
         twentyPercent: defaultTwentyPercent
       },
-      showWarningMessage: false
+      showWarningMessage: false,
+      blur: 'blur'
     }
+  }
+
+  componentDidMount(): void {
+    window.addEventListener('scroll', this.onScrolled.bind(this), true);
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('scroll', this.onScrolled.bind(this), true);
   }
 
   render(): ReactNode {
@@ -41,26 +53,31 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
 
     return <>
       <div className="row">
-        <div className="halfRowWrapper container">
-          <div className="halfRow">
-            <h1>Budgeting with the 50-30-20 rule</h1>
-            <p>Calculate your expenses and savings by using <strong>50-30-20</strong> rule.</p>
-            <p><strong> 50 %</strong> of your budget should go into your <strong>fixed costs</strong> e.g. rent, electricity, gas, monthly bills, insurance etc.</p>
-            <p><strong> 30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.</p>
-            <p><strong>20 %</strong> should go into your <strong>savings</strong>.</p>
-            <input className="earning" type="number" placeholder="Your monthly earnings" onInput={this.preventMinusInput.bind(this)} onChange={this.onBudgetChanged.bind(this)} min={0}></input>
-            <div className="infoNote">Average is calculated with {defaultBudgetValue} €</div>
+        <div className="container halfRowWrapper">
+          <div className="fixed halfRowSecond halfRow">
+            <div className="inner">
+              {errorMessage}
+              <PieChart data={[
+                { usage: 'Fifty percent - fixed costs', amount: this.state.budget.fiftyPercent, color: '#959595' },
+                { usage: 'Thirty percent - wishes and fun', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
+                { usage: 'Twenty percent - savings', amount: this.state.budget.twentyPercent, color: '#d5d5d5' }
+              ]}
+                width={300}
+                height={300}
+              />
+            </div>
           </div>
-          <div className="halfRow">
-            <div>{errorMessage}</div>
-            <PieChart data={[
-              { usage: 'Fifty percent - fixed costs', amount: this.state.budget.fiftyPercent, color: '#959595' },
-              { usage: 'Thirty percent - wishes and fun', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
-              { usage: 'Twenty percent - savings', amount: this.state.budget.twentyPercent, color: '#d5d5d5' }
-            ]}
-              width={300}
-              height={300}
-            />
+          <div className={`scrollable halfRowFirst halfRow ${this.state.blur}`}>
+            <h1>Budgeting with the 50-30-20 rule</h1>
+            <input value={this.props.earningsPerMonth} className="earning" type="number" placeholder="Your monthly earnings" onInput={this.preventMinusInput.bind(this)} onChange={this.onBudgetChanged.bind(this)} min={0}></input>
+            <div className="infoNote">Average is calculated with {defaultBudgetValue} €</div>
+            <p>Calculate your expenses and savings by using <strong>50-30-20</strong> rule.</p>
+            <p>Just input your monthly earnings above and see how the values in the pie chart change. This should be your guideline for handling your expenses and savings.</p>
+            <p>Then you can switch to the second screen to calculate your monthly expenses and see what's left at the end.</p>
+            <h2>How does the 50-30-20 rule work?</h2>
+            <p><strong>50 %</strong> of your budget should go into your <strong>fixed costs</strong> e.g. rent, electricity, gas, monthly bills, insurance etc.</p>
+            <p><strong>30 %</strong> into your <strong>wishes and fun</strong> e.g. vacation, gym membershit, entertainment, amazon, restaurant, concerts.</p>
+            <p><strong>20 %</strong> should go into your <strong>savings</strong>.</p>
           </div>
         </div>
       </div>
@@ -81,6 +98,9 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
     setEarningsPerMonthValueInParent(this.props, earningsPerMonth);
   }
 
+  onScrolled(): void {
+    this.setState({ blur: '' });
+  }
 }
 
 function calculateBudgetByRule(event: ChangeEvent<HTMLInputElement>): Budget {

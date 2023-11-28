@@ -12,12 +12,16 @@ export default class MenuComponent extends React.Component<MenuComponentProps> {
     return <>
       <div className="navigation" role="navigation" aria-label="Main Navigation">
         <div id="prevImage" onClick={this.onMenuItemClicked.bind(this, ruleSymbol)}>
-          <div className="arrowIcon"></div>
-          <div className="arrowIcon"></div>
+          <div className="arrowWrapper">
+            <div className="arrowIcon"></div>
+            <div className="arrowIcon"></div>
+          </div>
         </div>
         <div id="nextImage" onClick={this.onMenuItemClicked.bind(this, fixedCostSymbol)}>
-          <div className="arrowIcon"></div>
-          <div className="arrowIcon"></div>
+          <div className="arrowWrapper">
+            <div className="arrowIcon"></div>
+            <div className="arrowIcon"></div>
+          </div>
         </div>
       </div>
     </>;
