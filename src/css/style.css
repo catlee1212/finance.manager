@@ -440,17 +440,6 @@ input[type="text"] {
   }
 }
 
-
-@media only screen and (max-width: 600px) {
-  .fixed {
-    height: 40vh;
-  }
-
-  .scrollable {
-    height: 60vh;
-  }
-}
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {}
 
