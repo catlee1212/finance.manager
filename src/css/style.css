@@ -273,7 +273,6 @@ input[type="text"] {
  ****************************************/
 
 .arrowWrapper {
-  background-color: #fff;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -282,7 +281,6 @@ input[type="text"] {
   rotate: 180deg;
   height: 50px;
   border-radius: 5px;
-  box-shadow: 0px 0px 15px #959595;
 }
 
 /* left */
@@ -355,7 +353,6 @@ input[type="text"] {
  MediaQuery
  ****************************************/
 
-/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .inputWrapper {
     background-color: #b6b6b6;
@@ -370,10 +367,6 @@ input[type="text"] {
   }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
-
-/* Medium devices (landscape tablets, 768px and down) */
 @media only screen and (max-width: 768px) {
   .halfRowWrapper {
     flex-wrap: wrap;
@@ -400,15 +393,15 @@ input[type="text"] {
 
   .halfRow {
     background-color: var(--lightGrey);
-    padding-left: calc(var(--controllerWith) + var(--controllerEdgeDistance));
-    padding-right: calc(var(--controllerWith) + var(--controllerEdgeDistance));
+    padding-left: calc(var(--controllerWith) + var(--controllerEdgeDistance) + 5px);
+    padding-right: calc(var(--controllerWith) + var(--controllerEdgeDistance) + 5px);
     padding-top: 20px;
   }
 
   .fixed {
     background-color: var(--lightGrey);
     position: fixed;
-    height: 49vh;
+    height: 50vh;
     width: 100vw;
     left: 0;
     top: 0;
@@ -420,8 +413,8 @@ input[type="text"] {
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: var(--lightGrey);
-    height: 49vh;
+    background-color: #dbdbdb;
+    height: 50vh;
     width: 100vw;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -442,6 +435,20 @@ input[type="text"] {
     mask: var(--mask);
   }
 
+  .scale .visx-legend-item {
+    font-size: 15px;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .fixed {
+    height: 40vh;
+  }
+
+  .scrollable {
+    height: 60vh;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

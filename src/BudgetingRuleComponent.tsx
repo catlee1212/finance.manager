@@ -58,9 +58,9 @@ export default class BudgetingRuleComponent extends React.Component<BudgetingRul
             <div className="inner">
               {errorMessage}
               <PieChart data={[
-                { usage: 'Fifty percent - fixed costs', amount: this.state.budget.fiftyPercent, color: '#959595' },
-                { usage: 'Thirty percent - wishes and fun', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
-                { usage: 'Twenty percent - savings', amount: this.state.budget.twentyPercent, color: '#d5d5d5' }
+                { usage: 'Fixed costs', amount: this.state.budget.fiftyPercent, color: '#959595' },
+                { usage: 'Wishes and fun', amount: this.state.budget.thirtyPercent, color: '#c0c0c0' },
+                { usage: 'Savings', amount: this.state.budget.twentyPercent, color: '#d5d5d5' }
               ]}
                 width={300}
                 height={300}
